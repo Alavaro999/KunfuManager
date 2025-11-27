@@ -50,15 +50,13 @@ FOREIGN KEY (id_profesor) REFERENCES usuario(id_usuario) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
 -- AUSENCIAS --------------------------------------------------------------------------------------------------------------------------------------------
-CREATE TABLE ausencias_profesores (
-id_ausencia_profesor BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-id_profesor BIGINT UNSIGNED NOT NULL,
+CREATE TABLE ausencias(
+id_ausencia BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+id_ausente BIGINT UNSIGNED NOT NULL,
 fecha DATE NOT NULL,
 motivo TEXT,
-sustituido_por BIGINT UNSIGNED,
 
-FOREIGN KEY (id_profesor) REFERENCES usuario(id_usuario) ON DELETE CASCADE,
-FOREIGN KEY (sustituido_por) REFERENCES usuario(id_usuario) ON DELETE SET NULL
+FOREIGN KEY (id_ausente) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
 -- INVENTARIO Y SOLICITUDES --------------------------------------------------------------------------------------------------------------------------------------------
