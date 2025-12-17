@@ -1,0 +1,29 @@
+<?php
+require_once __DIR__ . '/../vendor/autoload.php';
+ 
+use Dotenv\Dotenv;
+use App\Config\Database;
+use App\Models\UsuarioModel;
+ 
+Dotenv::createImmutable(__DIR__ . '/../')->load();
+ 
+$pdo = Database::connect();
+$model = new UsuarioModel($pdo);
+ 
+$id = (int) $_GET['id'];
+$usuario = $model->obtenerPorId($id);
+ 
+if ($_POST) {
+    $model->actualizar($id, $_POST['nombre'], $_POST['email']);
+    header("Location: index.php");
+    exit;
+}
+?>
+ 
+<h1>Editar usuario</h1>
+ 
+<form method="post">
+<input name="nombre" value="<?= $usuario['nombre'] ?>" required>
+<input name="email" value="<?= $usuario['email'] ?>" required>
+<button>Actualizar</button>
+</form>
