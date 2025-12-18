@@ -13,15 +13,18 @@ class UsuarioModel
     }
  
     // CREATE
-    public function crear(string $nombre, string $email): bool
+    public function crear(string $nombre, string $email, string $logname, string $pass, string $dni): bool
     {
         $stmt = $this->pdo->prepare(
-            "INSERT INTO usuarios (nombre, email) VALUES (:n, :e)"
+            "INSERT INTO usuario (nombre, email, logname, pass, dni) VALUES (:n, :e, :l, :c, :d)"
         );
  
         return $stmt->execute([
             ':n' => $nombre,
-            ':e' => $email
+            ':e' => $email,
+            ':l' => $logname,
+            ':c' => $pass,
+            ':d' => $dni
         ]);
     }
  
@@ -29,7 +32,7 @@ class UsuarioModel
     public function obtenerTodos(): array
     {
         return $this->pdo->query(
-            "SELECT * FROM usuarios"
+            "SELECT * FROM usuario"
         )->fetchAll();
     }
  

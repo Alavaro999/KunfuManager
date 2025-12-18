@@ -29,8 +29,8 @@ $usuarios = $model->obtenerTodos();
 <td><?= htmlspecialchars($u['nombre']) ?></td>
 <td><?= htmlspecialchars($u['email']) ?></td>
 <td>
-<a href="editar.php?id=<?= $u['id'] ?>">✏️ Editar</a>
-<a href="eliminar.php?id=<?= $u['id'] ?>" 
+<a href="editar.php?id=<?= $u['id_usuario'] ?>">✏️ Editar</a>
+<a href="eliminar.php?id=<?= $u['id_usuario'] ?>" 
                    onclick="return confirm('¿Seguro?')">🗑️ Borrar</a>
 </td>
 </tr>
