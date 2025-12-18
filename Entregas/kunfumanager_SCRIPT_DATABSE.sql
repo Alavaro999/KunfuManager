@@ -1,22 +1,31 @@
 
--- DROP DATABASE IF EXISTS kunfumanager;
 CREATE DATABASE kungfumanager CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE kungfumanager;
 
 
--- TABLAS PRINCIPALES
-CREATE TABLE usuario(
+-- TABLA Usuarios y Roles --------------------------------------------------------------------------------------------------------------------------------------------
 id_usuario BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 nombre VARCHAR(100) NOT NULL,
 apellidos VARCHAR(100),
-pass VARCHAR(255) NOT NULL,
+logname VARCHAR(100) UNIQUE NOT NULL,
+pass VARCHAR(100) NOT NULL,
 dni VARCHAR(100) NOT NULL,
 telefono VARCHAR(30),
 fecha_alta DATETIME DEFAULT CURRENT_TIMESTAMP,
 email VARCHAR(100),
 cinturon ENUM('BLANCO','BLANCO-AMARILLO','AMARILLO','AMARILLO-NARANJA','NARANJA',
-			'NARANJA-VERDE','VERDE','VERDE-AZUL','AZUL','AZUL-MARRON','MARRON','NEGRO') DEFAULT NULL
+			'NARANJA-VERDE','VERDE','VERDE-AZUL','AZUL','AZUL-MARRON','MARRON','NEGRO') DEFAULT NULL,
+licencia VARCHAR(100)
 )ENGINE=InnoDB;
+
+-- TABLA ROLES --------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE roles(
+id_rol ENUM('1','2','3','4'),
+id_usuario BIGINT UNSIGNED NOT NULL,
+
+PRIMARY KEY (id_rol,id_usuario)
+)ENGINE=InnoDB;
+
 
 -- GRUPOS, ALUMNOS_GRUPOS, CLASES --------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE grupos (
