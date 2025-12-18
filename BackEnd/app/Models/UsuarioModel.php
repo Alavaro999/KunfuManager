@@ -30,32 +30,50 @@ class UsuarioModel
  
     // READ
     public function obtenerTodos(): array
-    {
-        return $this->pdo->query(
-            "SELECT * FROM usuario"
-        )->fetchAll();
+{
+    try {
+        $stmt = $this->pdo->query("SELECT * FROM usuario ORDER BY id_usuario DESC");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (\PDOException $e) {
+        // Manejo de error: tabla inexistente u otro error
+        error_log("Error en obtenerTodos: " . $e->getMessage());
+        return []; // Retorna un array vacío si hay error
     }
+}
  
     public function obtenerPorId(int $id): array|false
     {
         $stmt = $this->pdo->prepare(
-            "SELECT * FROM usuarios WHERE id = :id"
+            "SELECT * FROM usuarios WHERE id_usuario = :id"
         );
         $stmt->execute([':id' => $id]);
-        return $stmt->fetch();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
- 
-    // UPDATE
-    public function actualizar(int $id, string $nombre, string $email): bool
-    {
+    public function obtenerPorLogName(string $logname): array|false{
         $stmt = $this->pdo->prepare(
-            "UPDATE usuarios SET nombre=:n, email=:e WHERE id=:id"
+            "SELECT * FROM usuario WHERE logname = :logname"
         );
- 
+        $stmt->execute([':logname' => $logname]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // UPDATE
+      public function actualizar(
+        int $id,
+        string $nombre,
+        string $email
+    ): bool {
+        $stmt = $this->pdo->prepare(
+            "UPDATE usuario
+             SET nombre = :nombre,
+                 email = :email
+             WHERE id_usuario = :id"
+        );
+
         return $stmt->execute([
-            ':n' => $nombre,
-            ':e' => $email,
-            ':id' => $id
+            ':id'     => $id,
+            ':nombre' => $nombre,
+            ':email'  => $email
         ]);
     }
  
