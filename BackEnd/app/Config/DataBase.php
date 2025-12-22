@@ -1,16 +1,17 @@
 <?php
+
 namespace App\Config;
- 
+
 use PDO;
 use PDOException;
- 
+
 class Database
 {
     public static function connect(): PDO
     {
         try {
             $dsn = "mysql:host={$_ENV['DB_HOST']};dbname={$_ENV['DB_NAME']};charset={$_ENV['DB_CHARSET']};port={$_ENV['DB_PORT']}";
- 
+
             return new PDO(
                 $dsn,
                 $_ENV['DB_USER'],
