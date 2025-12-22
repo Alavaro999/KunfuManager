@@ -1,8 +1,8 @@
 <?php
 
-namespace App\api\api_Usuario;
+namespace App\Api\Controllers\api_Usuario;
 
-use App\Models\UsuarioModel;
+use App\Api\Models\UsuarioModel;
 
 
 class Api_Usuario
