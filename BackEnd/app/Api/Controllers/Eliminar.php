@@ -3,7 +3,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
  
 use Dotenv\Dotenv;
 use App\Config\Database;
-use App\Models\UsuarioModel;
+use App\Api\Models\UsuarioModel;
  
 Dotenv::createImmutable(__DIR__ . '/../')->load();
  

@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__ . '/../vendor/autoload.php';
 
+namespace App\Api\Controllers;
+require_once __DIR__ . '/../vendor/autoload.php';
 use Dotenv\Dotenv;
 use App\Config\Database;
 use App\Models\RolModel;

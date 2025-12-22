@@ -1,6 +1,6 @@
 <?php
-
-use App\Models\UsuarioModel;
+namespace App\Api\Controllers;
+use App\Api\Models\UsuarioModel;
 
 $model = new UsuarioModel($pdo);
 

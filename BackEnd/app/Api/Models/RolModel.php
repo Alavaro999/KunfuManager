@@ -1,9 +1,11 @@
 <?php
-
 namespace app\Models;
+require_once __DIR__ . '/../vendor/autoload.php';
 
+use Dotenv\Dotenv;
 use PDO;
 use App\Config\Database;
+Dotenv::createImmutable(__DIR__ . '/../')->load();
 
 class RolModel
 {
