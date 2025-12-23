@@ -1,10 +1,13 @@
 <?php
+
 namespace App\Api\Models;
+
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use App\Config\Database;
 use PDO;
+
 Dotenv::createImmutable(__DIR__ . '/../../../')->load();
 
 class UsuarioModel
