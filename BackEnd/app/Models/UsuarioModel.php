@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
- //DEMO
+
 use PDO;
  
 class UsuarioModel
