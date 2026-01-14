@@ -1,10 +1,8 @@
 
-CREATE DATABASE kungfumanager CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE kungfumanager;
-
-
 -- TABLA Usuarios y Roles --------------------------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE usuario(
 id_usuario BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+id_rol TINYINT default 1,
 nombre VARCHAR(100) NOT NULL,
 apellidos VARCHAR(100),
 logname VARCHAR(100) UNIQUE NOT NULL,
@@ -20,10 +18,12 @@ licencia VARCHAR(100)
 
 -- TABLA ROLES --------------------------------------------------------------------------------------------------------------------------------------------
 CREATE TABLE roles(
-id_rol ENUM('1','2','3','4'),
-id_usuario BIGINT UNSIGNED NOT NULL,
+id_rol TINYINT PRIMARY KEY,
+id_usuario TINYINT UNIQUE,
+nombre VARCHAR(100),
+descripcion VARCHAR(100),
 
-PRIMARY KEY (id_rol,id_usuario)
+FOREIGN KEY (id_usaurio) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 )ENGINE=InnoDB;
 
 
