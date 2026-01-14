@@ -109,15 +109,6 @@ Proyecto personal orientado a una futura implementación real en centros deporti
 
 ---
 
-## 📈 Roadmap
-
-- Informes financieros avanzados
-- Mejora del sistema de facturación electrónica
-- Optimización de experiencia de usuario
-- Escalado a modelo SaaS
-
----
-
 ## 👤 Autor
 
-Desarrollado por **nickname**
+Desarrollado por alumnos de DAW
