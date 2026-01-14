@@ -1,6 +1,6 @@
 <?php
 namespace App\Models;
- //rama generada para crear conflito
+ //DEMO
 use PDO;
  
 class UsuarioModel
