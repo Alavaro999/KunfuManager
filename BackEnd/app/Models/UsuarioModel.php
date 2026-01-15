@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use PDO;
@@ -13,25 +14,14 @@ class UsuarioModel
     }
 
     // CREATE
-<<<<<<< Updated upstream
-    public function crear(string $nombre, string $email): bool
-    {
-        $stmt = $this->pdo->prepare(
-            "INSERT INTO usuarios (nombre, email) VALUES (:n, :e)"
-=======
     public function crear(array $datos): bool
     {
         $stmt = $this->pdo->prepare(
             "INSERT INTO usuario (nombre, apellidos, pass, dni, telefono, email, cinturon) 
              VALUES (:nombre, :apellidos, :pass, :dni, :telefono, :email, :cinturon)"
->>>>>>> Stashed changes
         );
 
         return $stmt->execute([
-<<<<<<< Updated upstream
-            ':n' => $nombre,
-            ':e' => $email
-=======
             ':nombre' => $datos['nombre'],
             ':apellidos' => $datos['apellidos'] ?? null,
             ':pass' => password_hash($datos['pass'], PASSWORD_DEFAULT),
@@ -39,7 +29,6 @@ class UsuarioModel
             ':telefono' => $datos['telefono'] ?? null,
             ':email' => $datos['email'] ?? null,
             ':cinturon' => $datos['cinturon'] ?? null
->>>>>>> Stashed changes
         ]);
     }
 
@@ -47,11 +36,7 @@ class UsuarioModel
     public function obtenerTodos(): array
     {
         return $this->pdo->query(
-<<<<<<< Updated upstream
             "SELECT * FROM usuarios"
-=======
-            "SELECT * FROM usuario ORDER BY fecha_alta DESC"
->>>>>>> Stashed changes
         )->fetchAll();
     }
 
@@ -103,7 +88,7 @@ class UsuarioModel
 
         $sql = "UPDATE usuario SET " . implode(', ', $campos) . " WHERE id_usuario = :id";
         $stmt = $this->pdo->prepare($sql);
-        
+
         return $stmt->execute($valores);
     }
 
@@ -135,12 +120,12 @@ class UsuarioModel
     public function verificarCredenciales(string $dni, string $pass): array|false
     {
         $usuario = $this->obtenerPorDNI($dni);
-        
+
         if ($usuario && password_verify($pass, $usuario['pass'])) {
             unset($usuario['pass']); // Eliminar contraseña del array
             return $usuario;
         }
-        
+
         return false;
     }
 
